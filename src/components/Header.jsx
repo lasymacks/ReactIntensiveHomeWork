@@ -1,18 +1,10 @@
-import React from 'react';
+import React, { forwardRef, useState } from 'react';
 
-class Header extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            text: props.text
-        }
-    }
+const Header = forwardRef((props, ref) => {
 
-    render() {
-        return (
-            <h1 className='header'>{this.state.text}</h1>
-        )
-    }
+    return (
+        <h1 className='header' ref={ref}>{props.text}</h1>
+    )
 }
-
+)
 export default Header;

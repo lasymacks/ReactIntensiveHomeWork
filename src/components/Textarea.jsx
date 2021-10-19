@@ -1,49 +1,41 @@
-import React, { forwardRef, useState } from 'react';
+import React from 'react';
 
-const TextArea = forwardRef((props, ref) => {
-    const [name, setName] = useState(props.name);
-    const [description, setDescription] = useState(props.description);
-    const [counter, setCounter] = useState(props.counter);
-    const [count, setCount] = useState(counter);
-    const [visited, setVisited] = useState(props.visited);
-    const [error, setError] = useState(props.error);
-    const [currentError, setCurrentError] = useState(error);
-    const [value, setValue] = useState('');
+const TextArea = (props) => {
 
     const validateTextarea = (event) => {
-        setValue(event.target.value.trim());
+        props.setValue(event.target.value.trim());
+        props.setVisited(true);
         if (event.target.value.length < 1) {
-            setVisited(true);
-            setCurrentError(error);
+            props.setCurrentError(props.error);
             return;
         }
         if (event.target.value == 0) {
-            setVisited(true);
-            setCurrentError('Значение не может быть пробелом');
+            props.setCurrentError('Значение не может быть пробелом');
             return;
         }
-        setVisited(false);
-        setCurrentError('');
+        props.setVisited(false);
+        props.setCurrentError('');
     }
 
     const checkCounter = (event) => {
-        setCount(() => {
+
+        props.setCounter(() => {
             const length = event.target.value.length;
-            let count = counter;
+            let count = props.count;
             count -= length;
             if (count <= 0) {
-                if (value.length < event.target.value.length) {
-                    return (event.target.value = value);
+                if (props.value.length < event.target.value.length) {
+                    return props.counter;
                 } else {
-                    return setCount(count);
+                    return count;
                 }
                 
             } else {
-                setValue(event.target.value);
+                props.setValue(event.target.value);
                 setTimeout(() => {
-                    setValue(event.target.value.trim());
+                    props.setValue(event.target.value.trim());
                 }, 600)
-                return setCount(count);
+                return count;
             }
             
         });
@@ -52,27 +44,26 @@ const TextArea = forwardRef((props, ref) => {
     return (
         <div className='elementsContainer'>
             <div className='elementsContainer__left elementsContainer__left--textarea'>
-                <label className='elementsContainer__label'>{description}</label>
+                <label className='elementsContainer__label'>{props.description}</label>
             </div>
             <div className='elementsContainer__right'>
-                {(visited && error) && <div className='error error--textarea'>{currentError}</div>}
+                {(props.visited && props.error) && <div className='error error--textarea'>{props.currentError}</div>}
                 <textarea 
                 className='elementsContainer__textarea' 
-                name={name} 
+                name={props.name}
                 onChange={(event) => checkCounter(event)} 
                 onBlur={(e) => validateTextarea(e)}
-                value={value}
-                description={description}
-                ref={ref}
-                error={currentError}
+                value={props.value}
+                description={props.description}
+                error={props.currentError}
                 >
                 </textarea>
                 <div className='elementsContainer__textarea-counter'>
-                    Символов доступно: {count}
+                    Символов доступно: {props.counter}
                 </div>
             </div>
         </div>
     )
-})
+}
 
 export default TextArea;

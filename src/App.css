@@ -19,6 +19,10 @@
   margin-bottom: 40px;
 }
 
+.header--result {
+  margin-bottom: 20px;
+}
+
 /* Container for form elements */
 
 .elementsContainer {
@@ -37,7 +41,7 @@
 }
 
 .elementsContainer--result:last-child {
-  border-bottom: none;
+  margin-bottom: 20px;
 }
 
 .elementsContainer__withButtons {

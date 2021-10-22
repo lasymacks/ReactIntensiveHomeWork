@@ -1,86 +1,69 @@
 import React from 'react';
 
-class TextArea extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            name: props.name,
-            description: props.description,
-            counter: props.counter,
-            count: props.counter,
-            ref: props.ref,
-            visited: false,
-            error: props.error,
-            currentError: props.error,
-            value: ''
-        }
+const TextArea = (props) => {
 
-    }
-
-    validateTextarea = (event) => {
-        this.setState({value: event.target.value.trim()});
+    const validateTextarea = (event) => {
+        props.setValue(event.target.value.trim());
+        props.setVisited(true);
         if (event.target.value.length < 1) {
-            this.setState({visited: true});
-            this.setState({currentError: this.state.error});
+            props.setCurrentError(props.error);
             return;
         }
         if (event.target.value == 0) {
-            this.setState({visited: true});
-            this.setState({currentError: 'Значение не может быть пробелом'});
+            props.setCurrentError('Значение не может быть пробелом');
             return;
         }
-        this.setState({visited: false});
-        this.setState({currentError: ''});
+        props.setVisited(false);
+        props.setCurrentError('');
     }
 
-    checkCounter = (event) => {
-        this.setState((prevState) => {
+    const checkCounter = (event) => {
+
+        props.setCounter(() => {
             const length = event.target.value.length;
-            let count = this.state.counter;
+            let count = props.count;
             count -= length;
-            if (this.state.count <= 0) {
-                if (prevState.value.length < event.target.value.length) {
-                    return (event.target.value = prevState.value);
+            if (count <= 0) {
+                if (props.value.length < event.target.value.length) {
+                    return props.counter;
                 } else {
-                    return ({count: count});
+                    return count;
                 }
                 
             } else {
-                this.state.value = event.target.value;
-                // this.setState({value: event.target.value})
-                return ({count: count});
+                props.setValue(event.target.value);
+                setTimeout(() => {
+                    props.setValue(event.target.value.trim());
+                }, 600)
+                return count;
             }
             
         });
     }
 
-    changeValue(event) {
-        this.setState({value: event.target.value})
-    }
-
-    render() {
-        return (
-            <div className='elementsContainer'>
-                <div className='elementsContainer__left elementsContainer__left--textarea'>
-                    <label className='elementsContainer__label'>{this.state.description}</label>
-                </div>
-                <div className='elementsContainer__right'>
-                    {(this.state.visited && this.state.error) && <div className='error error--textarea'>{this.state.currentError}</div>}
-                    <textarea 
-                    className='elementsContainer__textarea' 
-                    name={this.state.name} 
-                    onChange={(event) => this.checkCounter(event)} 
-                    onBlur={(e) => this.validateTextarea(e)}
-                    value={this.state.value}
-                    >
-                    </textarea>
-                    <div className='elementsContainer__textarea-counter'>
-                        Символов доступно: {this.state.count}
-                    </div>
+    return (
+        <div className='elementsContainer'>
+            <div className='elementsContainer__left elementsContainer__left--textarea'>
+                <label className='elementsContainer__label'>{props.description}</label>
+            </div>
+            <div className='elementsContainer__right'>
+                {(props.visited && props.error) && <div className='error error--textarea'>{props.currentError}</div>}
+                <textarea 
+                className='elementsContainer__textarea' 
+                name={props.name}
+                onChange={(event) => checkCounter(event)} 
+                onBlur={(e) => validateTextarea(e)}
+                value={props.value}
+                description={props.description}
+                error={props.currentError}
+                >
+                </textarea>
+                <div className='elementsContainer__textarea-counter'>
+                    Символов доступно: {props.counter}
                 </div>
             </div>
-        )
-    }
+        </div>
+    )
 }
 
 export default TextArea;

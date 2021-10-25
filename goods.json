@@ -10,7 +10,7 @@
       "price": "60"
     },
     {
-      "inStock": "10",
+      "inStock": 9,
       "name": "Банан",
       "image": "https://www.kudaukupovinu.rs/files/images/2016/1/27/banane%281%29.jpg",
       "id": 2,
@@ -80,12 +80,10 @@
       "title": "/more",
       "description": "Можно скушать",
       "price": "80"
-    },
-    {
-      "id": 10
-    },
-    {
-      "id": 11
     }
-  ]
- }
+  ],
+  "bascet": {
+    "bascet": 1,
+    "sum": 20
+  }
+}

@@ -1,130 +1,154 @@
 import React, { useEffect, useState } from 'react';
-import FormErrors from './FromErrors';
 
 const Modale = (props) => {
 
     const [authorization, setAuthorization] = useState({
         login: '',
         password: '',
-        formErrors: {login: '', password: '', all: ''},
-        loginValid: false,
-        passwordValid: false,
-        formValid: false
+        formErrors: '',
+        loginValid: '',
+        passwordValid: '',
+        formValid: '',
+        currentError: ''
     });
 
     const inputHandler = (event) => {
         const value = event.target.value;
         const name = event.target.name;
 
-        setAuthorization(Object.assign((authorization, { ...authorization,[name]: value}),
-            () => { logInValidator(name, value) }))
+        setAuthorization(Object.assign((authorization, { ...authorization,[name]: value})))
     }
 
     const formHandler = (event) => {
         event.preventDefault();
 
-        const formErrors = authorization.formErrors;
-        const formValid = authorization.formValid;
+        let loginValidData = authorization.loginValid;
+        let passwordValidData = authorization.passwordValid;
+        let formValidData = authorization.formValid;
+        let currentErrorData = authorization.currentError;
+        let formErrorsData = authorization.formErrors;
 
-        if ([formErrors.login] !== '' && [formErrors.password] !== '') {
-            setAuthorization(Object.assign(authorization, {
-                formErrors: {...formErrors, all: 'Некорректные логин и пароль'}
-            }))
-            return;
-        }
+        switch (authorization.login) {
 
-        if (authorization.loginValid && authorization.passwordValid) {
-            setAuthorization(Object.assign(authorization, {[formValid]: true}))
-            return;
-        }
-
-    }
-
-    const logInValidator = (name, value) => {
-
-        console.log('validator');
-        const formErrors = authorization.formErrors;
-
-        switch (name) {
-
-            case 'login':
-                console.log('login', name);
-                switch (value) {
-                    case 'admin':
-                        authorization.password === 'user' ? 
-                        setAuthorization(Object.assign(authorization, 
-                            {loginValid: false},
-                            {formErrors: {...formErrors ,login: 'Некорректный логин'}}
-                            )) :
-                            setAuthorization(Object.assign(authorization, {loginValid: true})) ;
-                    break;
-
-                    case 'user':
-                        authorization.password === 'admin' ? 
-                        setAuthorization(Object.assign(authorization, 
-                            {loginValid: false},
-                            {formErrors: {...formErrors ,login: 'Некорректный логин'}}
-                            )) :
-                            setAuthorization(Object.assign(authorization, {loginValid: true})) ;
-                    break;
-
-                    default: 
-                        console.log('bad login');
-                        setAuthorization(Object.assign(authorization, 
-                            {loginValid: false},
-                            {formErrors: {...formErrors ,login: 'Некорректный логин'}}
-                            ));
-                    break;
+            case 'admin':
+                if (authorization.password !== 'user') {
+                    loginValidData = true;
+                    formErrorsData = '';
+                } else {
+                    loginValidData = false;
+                    formErrorsData = 'Некорректный логин';
                 }
-
             break;
 
-            case 'password':
-
-                switch (value) {
-                    case 'admin':
-                        authorization.login === 'user' ? 
-                        setAuthorization(Object.assign(authorization, 
-                            {passwordValid: false},
-                            {formErrors: {...formErrors ,password: 'Некорректный пароль'}}
-                            )) :
-                            setAuthorization(Object.assign(authorization, {passwordValid: true})) ;
-                    break;
-
-                    case 'user':
-                        authorization.login === 'admin' ? 
-                        setAuthorization(Object.assign(authorization, 
-                            {passwordValid: false},
-                            {formErrors: {...formErrors ,password: 'Некорректный пароль'}}
-                            )) :
-                            setAuthorization(Object.assign(authorization, {passwordValid: true})) ;
-                    break;
-
-                    default: 
-                        setAuthorization(Object.assign(authorization, 
-                            {passwordValid: false}, 
-                            {formErrors: {...formErrors ,password: 'Некорректный пароль'}}
-                            ));
-                    break;
+            case 'user':
+                if (authorization.password !== 'admin') {
+                    loginValidData = true;
+                    formErrorsData = '';
+                } else {
+                    loginValidData = false;
+                    formErrorsData = 'Некорректный логин';
                 }
-
             break;
 
             default: 
+                loginValidData = false;
+                formErrorsData = 'Некорректный логин';
+            break;
+        }
+
+        switch (authorization.password) {
+
+            case 'admin':
+                if (authorization.login !== 'user') {
+                    passwordValidData = true;
+                    formErrorsData = '';
+                } else {
+                    passwordValidData = false;
+                    formErrorsData = 'Некорректный пароль';
+                }
             break;
 
+            case 'user':
+                if (authorization.login !== 'admin') {
+                    passwordValidData = true;
+                    formErrorsData = '';
+                } else {
+                    passwordValidData = false;
+                    formErrorsData = 'Некорректный пароль';
+                }
+            break;
+
+            default: 
+                passwordValidData = false;
+                formErrorsData = 'Некорректный пароль';
+            break;
         }
+
+        formValidData = false;
+        if (loginValidData === false) {
+            formErrorsData = 'Некорректный логин';
+        }
+        if (loginValidData === true  && passwordValidData === true) {
+            formValidData = true;
+            formErrorsData = '';
+        } 
+        if (loginValidData !== true && passwordValidData !== true) {
+            formValidData = false;
+            formErrorsData = 'Некорректные логин и пароль';
+        }
+
+        currentErrorData = formErrorsData;
+        
+        if (typeof(currentErrorData) === 'object') {
+            currentErrorData = Object.values(currentErrorData);
+        }
+
+        setAuthorization({...authorization, 
+            loginValid: loginValidData, 
+            passwordValid: passwordValidData, 
+            formValid: formValidData,
+            formErrors: formErrorsData,
+            currentError: currentErrorData
+        })
+
+        if (formValidData) {
+            props.loginHandler();
+            props.roleSetter(() => authorization.login);
+            const currentRole = {current: authorization.login}
+            fetch(`http://localhost:3000/role`, {
+                method: 'PUT',
+                headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+                },
+                body: JSON.stringify(currentRole)
+            });
+        }
+
     }
 
     return (
         <div className='modale-container'>
             <form  className='modale-container__form'>
-                    <input className='modale-container__input' placeholder='Логин' name='login' onChange={(e) => inputHandler(e)} value={authorization.login}></input>
-                    <input className='modale-container__input' placeholder='Пароль' name='password' onChange={(e) => inputHandler(e)} value={authorization.password}></input>
-                    <button className='modale-container__form-button' type='submit' onClick={(e) => formHandler(e)}>Отправить</button>
+                    <input 
+                        className='modale-container__input' 
+                        placeholder='Логин' 
+                        name='login' 
+                        onChange={(e) => inputHandler(e)} 
+                        value={authorization.login}>
+                    </input>
+                    <input 
+                        className='modale-container__input' 
+                        placeholder='Пароль' name='password' 
+                        onChange={(e) => inputHandler(e)} value={authorization.password}>
+                    </input>
+                    <button className='modale-container__form-button' type='submit' onClick={(e) => formHandler(e)}>Войти</button>
                     <button className='modale-container__button' onClick={() => props.handler}>X</button>
 
-                    <FormErrors erorrs={authorization.loginValid} />
+                    {(authorization.formValid === '' || authorization.formValid === true) ? 
+                        <div></div> :
+                        <div className='modale-container__error'>{authorization.currentError}</div> 
+                        
+                    }
 
             </form>
         </div>

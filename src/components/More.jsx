@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import Form from './Form';
 
 const More = (props) => {
 
@@ -7,6 +8,7 @@ const More = (props) => {
     const [isLoaded, setIsLoaded] = useState(false);
     const [items, setItems] = useState({});
     const [count, setConunt] = useState(0);
+    const [edit, setEdit] = useState(false);
 
     useEffect(() => {
         fetch("http://localhost:3000/goods")
@@ -41,6 +43,22 @@ const More = (props) => {
         }
     }
 
+    const buttonBascetCreater = () => {
+        if (props.role === 'visitor') {
+            return (
+                <div className='description description-role'>
+                    Авторизуйтесь, чтобы добавить в корзину
+                </div>
+            )
+        } else {
+            return (
+                items.inStock > 0 ? 
+                    <button className='button button--more' id={items.id} onClick={(e) => bascetHandler(e)}>В корзину</button> :
+                    <div className='description notAvailable'>Нет в наличии!</div>
+            )
+        }
+    }
+
     const bascetHandler = (event) => {
         if (items.inStock <= 0) {
             setItems((prev) => prev);
@@ -53,11 +71,14 @@ const More = (props) => {
             );
 
             setItems(() => newItems);
-            console.log(items);
+            
             const newBascet = (count > 0 ? props.bascet.bascet += count : props.bascet.bascet += 1);
             const newSum = (count > 0 ? props.bascet.sum += (Number(newItems.price) * count) : props.bascet.sum += Number(newItems.price));
+            const newBascetValue = props.bascet;
 
-            props.bascetListener(() => Object.assign(props.bascet, {bascet: newBascet}, {sum: newSum}));
+            newBascetValue.bascet = newBascet;
+            newBascetValue.sum = newSum;
+            props.bascetListener({...props.bascet, newBascetValue})
 
             fetch(`http://localhost:3000/goods/${event.target.id}`, {
                 method: 'PUT',
@@ -66,18 +87,46 @@ const More = (props) => {
                 },
                 body: JSON.stringify(newItems)
             });
+
             setConunt(() => 0);
 
-            const newBascetValue = Object.assign(props.bascet, {bascet: newBascet}, {sum: newSum});
-            console.log(newBascetValue);
             fetch(`http://localhost:3000/bascet`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json;charset=utf-8'
-            },
-            body: JSON.stringify(newBascetValue)
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json;charset=utf-8'
+                },
+                body: JSON.stringify(newBascetValue)
             });
         }
+    }
+
+    const cardBodyCreater = () => {
+        if (edit) {
+            return (
+                <Form items={items} id={thisId} editSetter={setEdit} itemsSetter={setItems}/>
+            )
+        } else {
+            return (
+                <div className='cardContainer__right cardContainer__right--more'>
+                    <h3 className='header header--more'>{items.name}</h3>
+                    <div className='description description--more'>{items.description}</div>
+                    <div className='description description--more'>В наличии - {items.inStock ? items.inStock : 0} кг</div>
+                    <div className='price price--more'>{items.price}р / кг</div>
+                    <div className='cardContainer__right__buttonsCont'>
+                        <div className='counter-container'>
+                            <button className='button button--counter' onClick={decrement}>-</button>
+                            <span className='count'>{count}</span>
+                            <button className='button button--counter'  onClick={increment}>+</button>
+                        </div>
+                        {buttonBascetCreater()}
+                    </div>
+                </div>
+            )
+        }
+    }
+
+    const editHandler = () => {
+        setEdit(() => true);
     }
 
     if (error) {
@@ -88,26 +137,11 @@ const More = (props) => {
         return (
             <div className='container'>
                 <div className='cardContainer cardContainer--more'>
+                    {props.role === 'admin' && <button className='button button--edit' onClick={editHandler}>Редактировать</button>}
                     <div className='cardContainer__left cardContainer__left--more'>
                         <img className='img img--more' src={items.image}></img>
                     </div>
-                    <div className='cardContainer__right cardContainer__right--more'>
-                        <h3 className='header header--more'>{items.name}</h3>
-                        <div className='description description--more'>{items.description}</div>
-                        <div className='description description--more'>В наличии - {items.inStock ? items.inStock : 0} кг</div>
-                        <div className='price price--more'>{items.price}р /кг</div>
-                        <div className='cardContainer__right__buttonsCont'>
-                            <div className='counter-container'>
-                                <button className='button button--counter' onClick={decrement}>-</button>
-                                <span className='count'>{count}</span>
-                                <button className='button button--counter'  onClick={increment}>+</button>
-                            </div>
-                            {items.inStock > 0 ? 
-                                <button className='button button--more' id={items.id} onClick={(e) => bascetHandler(e)}>В корзину</button> :
-                                <div className='description notAvailable'>Нет в наличии!</div>
-                            }
-                        </div>
-                    </div>
+                    {cardBodyCreater()}
                 </div>
             </div>
         )

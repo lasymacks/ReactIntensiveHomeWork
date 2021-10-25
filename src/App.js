@@ -17,8 +17,9 @@ function App() {
     bascet: null,
     sum: null
   });
-  const [loaded, setLoaded] = useState(false);
-  const [role, setRole] = useState('visitor');
+  const [role, setRole] = useState("visitor");
+  const [modale, setModale] = useState(false);
+  // Логины и пароли для авторизации
   const users = {
     admin: {
       login: 'admin',
@@ -29,8 +30,6 @@ function App() {
       password: 'user'
     },
   }
-  const [modale, setModale] = useState(false);
-
 
   const linkListener = (e) => {
     return setId(() => e.target.id);
@@ -44,29 +43,81 @@ function App() {
         bascetSetter(bas);
       })
 
-  }, [bascet]);
+    fetch("http://localhost:3000/role")
+      .then(res => res.json())
+      .then(result => {
+        setRole(() => 
+        String(Object.values(result)).length > 0 ? 
+        String(Object.values(result)) : 
+        role);
+      })
+  }, []);
 
   const bascetSetter = (bas) => {
-    setLoaded(() => true);
     setBascet(bas)
-    setLoaded(() => false);
   }
 
   const loginHandler = () => {
     modale ? setModale(() => false) : setModale(() => true);
   }
 
+  const loginButtonCreater = () => {
+    if (role === "visitor" && modale === false) {
+      return (
+        <div className='login'>
+          <button className='button button--modale' onClick={loginHandler}>Войти</button>
+        </div>
+      )
+    }
+    if (role !== "visitor" && modale === false) {
+      return (
+        <div className='login'>
+          <button className='button button--modale' onClick={logoutHandler}>Выйти</button>
+        </div>
+      )
+    }
+    if (modale) {
+      return (
+        <div className='login'></div>
+      )
+    }
+  }
+
+  const logoutHandler = () => {
+    setRole(() => 'visitor');
+    const currentRole = {current: 'visitor'}
+            fetch(`http://localhost:3000/role`, {
+                method: 'PUT',
+                headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+                },
+                body: JSON.stringify(currentRole)
+            });
+  }
+
+  const bascetCreater = () => {
+      if (role === 'visitor') {
+        return (
+          <div className='bascet'></div>
+        )
+      } 
+      if (role !== 'visitor') {
+        return (
+          bascet.bascet > 0 ?
+              <div className='bascet'>В корзине {bascet.bascet}кг фруктов на сумму {bascet.sum} рублей</div> : 
+              <div className='bascet'>Корзина пуста</div> 
+        )
+      }      
+  }
+
   return (
     <Router>
-      {modale && <Modale users={users} handler={loginHandler}/>} 
+      {modale && <Modale loginHandler={loginHandler} roleSetter={setRole} users={users} handler={loginHandler}/>} 
       <div className="App">
-        {!modale && 
-          <div className='login'>
-            <button className='button button--modale' onClick={loginHandler}>LogIn</button>
-          </div>
-        }
+        {loginButtonCreater()}
         <div className='container container--main'>
-          <h1 className='header main-header'>Фруктовая лавка</h1>
+        {<div className='role-panel'>Вы вошли как: <span className='role-panel__role'>{role}</span></div>}
+          <h1 className='main-header'>Фруктовая лавка</h1>
           <nav>
             <ul className='list'>
               <li className='list__elem'>
@@ -77,9 +128,7 @@ function App() {
               </li>
             </ul>
           </nav>
-
-          {bascet.bascet > 0 ? <div className='bascet'>В корзине {bascet.bascet} товаров на сумму {bascet.sum} рублей</div> : <div className='bascet'>Корзина пуста</div>}
-          
+          {bascetCreater()}
         </div>
       
 
@@ -89,6 +138,8 @@ function App() {
 
             <Route exact path="/" >
               <Card
+                role={role}
+                roleSetter={setRole}
                 listener={linkListener}
                 bascet={bascet}
                 bascetListener={setBascet}
@@ -97,6 +148,8 @@ function App() {
 
             <Route exact path="/more" >
               <More
+                role={role}
+                roleSetter={setRole}
                 thisId={id}
                 bascet={bascet}
                 bascetListener={setBascet}

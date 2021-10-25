@@ -18,6 +18,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    align-items: center;
     padding-top: 30px;
     padding-bottom: 30px;
     background-color: rgb(250, 250, 250);
@@ -50,6 +51,9 @@
 
 .header {
     margin-bottom: 20px;
+    max-width: 150px;
+    text-align: center;
+    word-wrap: break-word;
 }
 
 .main-header {
@@ -79,11 +83,11 @@
 }
 
 .link:hover {
-    color: rgb(187, 187, 83);
+    color: rgb(145, 175, 195);
 }
 
 .link:active {
-    color: #33415c;
+    color: rgb(95, 138, 167);
 }
 
 .about-text {
@@ -162,7 +166,7 @@
 .modale-container__form-button {
     align-self: center;
     border: none;
-    padding: 16px 23px;
+    padding: 16px 27px;
     border-radius: 3px;
     font-size: 16px;
     background-color: rgb(255, 220, 100);
@@ -196,4 +200,241 @@
 
 .modale-container__button:active {
     background-color: #777;
+}
+
+.modale-container__error {
+    position: absolute;
+    color: rgb(218, 84, 69);
+    font-size: 15px;
+    width: 100%;
+    text-align: center;
+    bottom: 20px;
+}
+
+/* Role panel */
+
+.role-panel {
+    color: #797979;
+    font-size: 14px;
+    position: absolute;
+    left: 140px;
+}
+
+.role-panel__role {
+    color: #666;
+    font-size: 16px;
+}
+
+/* Card items */
+
+.cardContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 30%;
+    padding: 50px 0;
+    border-radius: 3px;
+    width: 30%;
+    background-color: #fff;
+    margin-bottom: 30px;
+    box-shadow: 0px 0px 3px #ddd;
+}
+
+.cardContainer--more {
+    width: 97%;
+    margin: 0 3%;
+    height: 100%;
+    padding: 150px 0;
+    position: relative;
+}
+
+.cardContainer__left {
+    width: 30%;
+}
+
+.cardContainer__left--more {
+    display: flex;
+    width: 40%;
+    justify-content: flex-end;
+    align-content: center;
+    align-items: center;
+}
+
+.cardContainer__right {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.cardContainer__right--more {
+    width: 60%;
+}
+
+.cardContainer__right__buttonsCont {
+    width: 350px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+}
+
+.cardContainer__right__input {
+    width: 330px;
+    margin-bottom: 15px;
+    padding: 0 10px;
+    height: 30px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    background-color: rgb(248, 248, 248);
+    border-radius: 3px;
+}
+
+.cardContainer__right__input:focus {
+    background-color: rgb(235, 235, 235);
+}
+
+.cardContainer__right__textarea {
+    width: 330px;
+    height: 150px;
+    margin-bottom: 20px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    background-color: rgb(248, 248, 248);
+    border-radius: 3px;
+}
+
+.cardContainer__right__textarea:focus {
+    background-color: rgb(235, 235, 235);
+}
+
+.cardContainer__right__error {
+    color: rgb(218, 84, 69);
+    margin-top: 15px;
+}
+
+.img {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    object-position: center;
+    vertical-align: middle;
+}
+
+.img--more {
+    width: 350px;
+    height: 350px;
+}
+
+.header--more {
+    font-size: 26px;
+    max-width: 450px;
+}
+
+.description {
+    margin-bottom: 20px;
+    padding: 0 10px;
+    text-align: center;
+    word-wrap: break-word;
+    max-width: 150px;
+}
+
+.description--more {
+    font-size: 18px;
+    max-width: 450px;
+}
+
+.description-role {
+    margin-top: 15px;
+    font-weight: 500;
+    font-size: 16;
+    color: rgb(218, 84, 69);
+    padding: 0;
+    width: 150px;
+}
+
+.price {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.price--more {
+    font-size: 18px;
+}
+
+.button {
+    padding: 13px 25px;
+    background-color: #e6e6e6;
+    /* background-color: rgb(238, 209, 113); */
+    border: none;
+    border-radius: 3px;
+    font-size: 16px;
+    transition: ease-in-out .2s background-color;
+}
+
+.button:hover {
+    background-color: rgb(145, 175, 195);
+}
+
+.button:hover:disabled {
+    background-color: #eeeeee;;
+}
+
+.button:active {
+    background-color: rgb(81, 111, 131);
+}
+
+.button:active:disabled {
+    background-color: #eeeeee;
+}
+
+.button--counter {
+    font-size: 18px;
+}
+
+.button--counter:not(:last-child) {
+    margin-right: 20px;
+}
+
+.counter-container {
+    position: relative;
+}
+
+.button--more {
+    font-size: 18px;
+}
+
+.button--edit {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: rgb(240, 220, 100);
+    transition: .2s ease-in-out background-color;
+}
+
+.button--edit:hover {
+    background-color: rgb(240, 200, 70);
+}
+
+.button--edit:active {
+    background-color: rgb(240, 220, 100);
+}
+
+.button--save {
+    background-color: #64926f;
+}
+
+.count {
+    margin-right: 20px;
+    font-size: 18px;
+}
+
+.notAvailable {
+    color: lightcoral;
+    margin-bottom: 10px;
 }

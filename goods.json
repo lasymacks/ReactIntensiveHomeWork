@@ -1,7 +1,7 @@
 {
   "goods": [
     {
-      "inStock": "10",
+      "inStock": 34,
       "name": "Яблоко",
       "image": "https://static9.depositphotos.com/1011549/1208/i/600/depositphotos_12089121-stock-photo-green-apple-with-leaf.jpg",
       "id": 1,
@@ -10,7 +10,7 @@
       "price": "60"
     },
     {
-      "inStock": 9,
+      "inStock": 24,
       "name": "Банан",
       "image": "https://www.kudaukupovinu.rs/files/images/2016/1/27/banane%281%29.jpg",
       "id": 2,
@@ -19,7 +19,7 @@
       "price": "20"
     },
     {
-      "inStock": "0",
+      "inStock": 7,
       "name": "Арбуз",
       "image": "https://imgproxy.sbermarket.ru/imgproxy/size-500-500/aHR0cHM6Ly9zYmVybWFya2V0LnJ1L3NwcmVlL3Byb2R1Y3RzLzg5NzAvb3JpZ2luYWwvMTk5MzAuanBnPzE2MjU3NjU5NTk.jpg",
       "id": 3,
@@ -28,7 +28,7 @@
       "price": "30"
     },
     {
-      "inStock": "10",
+      "inStock": 10,
       "name": "Дыня",
       "image": "https://st.depositphotos.com/1915171/2519/i/600/depositphotos_25197817-stock-photo-ripe-melon-isolated-on-white.jpg",
       "id": 4,
@@ -37,7 +37,7 @@
       "price": "50"
     },
     {
-      "inStock": "10",
+      "inStock": 30,
       "name": "Ананас",
       "image": "https://sbermarket.ru/spree/products/20249/preview/30416.jpg?1587399416",
       "id": 5,
@@ -46,7 +46,7 @@
       "price": "100"
     },
     {
-      "inStock": "10",
+      "inStock": 24,
       "name": "Киви",
       "image": "https://fruktlove.ru/wp-content/uploads/2018/08/kivi.jpg",
       "id": 6,
@@ -55,7 +55,7 @@
       "price": "120"
     },
     {
-      "inStock": "10",
+      "inStock": 13,
       "name": "Гранат",
       "image": "https://www.okeydostavka.ru/wcsstore/OKMarketCAS/cat_entries/37334/37334_fullimage.jpg",
       "id": 7,
@@ -64,7 +64,7 @@
       "price": "150"
     },
     {
-      "inStock": "10",
+      "inStock": 15,
       "name": "Апельсин",
       "image": "https://foodcity.ru/storage/products/October2018/6XZSr6ddCl6cxfo0UchP.jpg",
       "id": 8,
@@ -73,7 +73,7 @@
       "price": "40"
     },
     {
-      "inStock": "10",
+      "inStock": 10,
       "name": "Груша",
       "image": "https://st.depositphotos.com/1902163/1955/i/950/depositphotos_19559331-stock-photo-pear.jpg",
       "id": 9,
@@ -83,7 +83,10 @@
     }
   ],
   "bascet": {
-    "bascet": 1,
-    "sum": 20
+    "bascet": 0,
+    "sum": 0
+  },
+  "role": {
+    "current": ""
   }
 }

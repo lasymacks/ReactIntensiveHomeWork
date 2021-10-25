@@ -1,0 +1,139 @@
+.cardContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 270px;
+    border-radius: 3px;
+    width: 30%;
+    background-color: #fff;
+    margin-bottom: 30px;
+    box-shadow: 0px 0px 3px #ddd;
+}
+
+.cardContainer--more {
+    width: 97%;
+    margin: 0 3%;
+    height: 600px;
+}
+
+.cardContainer__left {
+    width: 30%;
+}
+
+.cardContainer__left--more {
+    display: flex;
+    width: 40%;
+    justify-content: flex-end;
+    align-content: center;
+    align-items: center;
+}
+
+.cardContainer__right {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.cardContainer__right--more {
+    width: 60%;
+}
+
+.cardContainer__right__buttonsCont {
+    width: 350px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+}
+
+.img {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    object-position: center;
+    vertical-align: middle;
+}
+
+.img--more {
+    width: 350px;
+    height: 350px;
+}
+
+.header--more {
+    font-size: 26px;
+}
+
+.description {
+    margin-bottom: 20px;
+    padding: 0 10px;
+    text-align: center;
+}
+
+.description--more {
+    font-size: 18px;
+}
+
+.price {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.price--more {
+    font-size: 18px;
+}
+
+.button {
+    padding: 13px 25px;
+    background-color: #eeeeee;
+    border: none;
+    border-radius: 3px;
+    font-size: 16px;
+    transition: ease-in-out .2s background-color;
+}
+
+.button--more {
+    font-size: 18px;
+}
+
+.button:hover {
+    background-color: rgb(145, 175, 195);
+}
+
+.button:hover:disabled {
+    background-color: #eeeeee;;
+}
+
+.button:active {
+    background-color: rgb(81, 111, 131);
+}
+
+.button:active:disabled {
+    background-color: #eeeeee;
+}
+
+.button--counter {
+    font-size: 18px;
+}
+
+.button--counter:not(:last-child) {
+    margin-right: 20px;
+}
+
+.counter-container {
+    position: relative;
+}
+
+.count {
+    margin-right: 20px;
+    font-size: 18px;
+}
+
+.notAvailable {
+    color: lightcoral;
+    margin-bottom: 10px;
+}

@@ -1,0 +1,91 @@
+{
+  "goods": [
+    {
+      "inStock": "10",
+      "name": "Яблоко",
+      "image": "https://static9.depositphotos.com/1011549/1208/i/600/depositphotos_12089121-stock-photo-green-apple-with-leaf.jpg",
+      "id": 1,
+      "title": "/more",
+      "description": "Не телефон",
+      "price": "60"
+    },
+    {
+      "inStock": "10",
+      "name": "Банан",
+      "image": "https://www.kudaukupovinu.rs/files/images/2016/1/27/banane%281%29.jpg",
+      "id": 2,
+      "title": "/more",
+      "description": "Незаменим",
+      "price": "20"
+    },
+    {
+      "inStock": "0",
+      "name": "Арбуз",
+      "image": "https://imgproxy.sbermarket.ru/imgproxy/size-500-500/aHR0cHM6Ly9zYmVybWFya2V0LnJ1L3NwcmVlL3Byb2R1Y3RzLzg5NzAvb3JpZ2luYWwvMTk5MzAuanBnPzE2MjU3NjU5NTk.jpg",
+      "id": 3,
+      "title": "/more",
+      "description": "Повезет ли тебе в этот раз?",
+      "price": "30"
+    },
+    {
+      "inStock": "10",
+      "name": "Дыня",
+      "image": "https://st.depositphotos.com/1915171/2519/i/600/depositphotos_25197817-stock-photo-ripe-melon-isolated-on-white.jpg",
+      "id": 4,
+      "title": "/more",
+      "description": "Колхозница, или нет?",
+      "price": "50"
+    },
+    {
+      "inStock": "10",
+      "name": "Ананас",
+      "image": "https://sbermarket.ru/spree/products/20249/preview/30416.jpg?1587399416",
+      "id": 5,
+      "title": "/more",
+      "description": "А мы её",
+      "price": "100"
+    },
+    {
+      "inStock": "10",
+      "name": "Киви",
+      "image": "https://fruktlove.ru/wp-content/uploads/2018/08/kivi.jpg",
+      "id": 6,
+      "title": "/more",
+      "description": "Сводит скулы",
+      "price": "120"
+    },
+    {
+      "inStock": "10",
+      "name": "Гранат",
+      "image": "https://www.okeydostavka.ru/wcsstore/OKMarketCAS/cat_entries/37334/37334_fullimage.jpg",
+      "id": 7,
+      "title": "/more",
+      "description": "Надеюсь драгоценный?",
+      "price": "150"
+    },
+    {
+      "inStock": "10",
+      "name": "Апельсин",
+      "image": "https://foodcity.ru/storage/products/October2018/6XZSr6ddCl6cxfo0UchP.jpg",
+      "id": 8,
+      "title": "/more",
+      "description": "Заводной",
+      "price": "40"
+    },
+    {
+      "inStock": "10",
+      "name": "Груша",
+      "image": "https://st.depositphotos.com/1902163/1955/i/950/depositphotos_19559331-stock-photo-pear.jpg",
+      "id": 9,
+      "title": "/more",
+      "description": "Можно скушать",
+      "price": "80"
+    },
+    {
+      "id": 10
+    },
+    {
+      "id": 11
+    }
+  ]
+ }

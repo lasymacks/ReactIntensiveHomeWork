@@ -1,38 +1,199 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.root {
+    background-color: rgb(240, 240, 240);
+}
+
 .App {
-  text-align: center;
+    position: relative;
+    width: 1200px;
+    margin: 0 auto;
+    box-shadow: 0px 0px 10px #c4c4c4;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    background-color: rgb(250, 250, 250);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.container--main {
+    display: block;
+    text-align: center;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+    position: relative;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.container--about {
+    padding: 30px;
+    height: 100%;
 }
 
-.App-link {
-  color: #61dafb;
+.bascet {
+    position: absolute;
+    top: 15px;
+    right: 30px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.login {
+    position: absolute;
+    top: 15px;
+    left: 30px;
+}
+
+.header {
+    margin-bottom: 20px;
+}
+
+.main-header {
+    margin-bottom: 50px;
+    color: #386141;
+    font-size: 40px;
+}
+
+.list {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.list__elem:not(:last-child) {
+    margin-right: 40px;
+}
+
+.link {
+    text-decoration: none;
+    padding: 15px;
+    font-size: 17px;
+    font-weight: 500;
+    color: #000;
+    transition: ease-in-out .2s color;
+}
+
+.link:hover {
+    color: rgb(187, 187, 83);
+}
+
+.link:active {
+    color: #33415c;
+}
+
+.about-text {
+    color: #333;
+    margin-bottom: 20px;
+    text-indent: 40px;
+}
+
+/* Modale window */
+
+.button--modale {
+    position: absolute;
+    z-index: 10;
+}
+
+.modale-container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw;
+    height: 200vh;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modale-container__form {
+    position: relative;
+    width: 400px;
+    height: 280px;
+    border-radius: 3px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+.modale-container__left {
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    text-align: right;
+    margin-right: 20px;
+}
+
+.modale-container__right {
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    text-align: left;
+}
+
+.modale-container__input {
+    font-size: 16px;
+    margin-bottom: 30px;
+    padding: 0 10px;
+    width: 70%;
+    height: 33px;
+    border-radius: 3px;
+    background-color: rgb(230, 230, 230);
+    border: 1px solid rgb(210, 210, 210);
+    box-shadow: 1px 1px 10px rgb(240, 240, 240);
+}
+
+.modale-container__input:focus {
+    background-color: rgb(240, 240, 240);
+}
+
+.modale-container__form-button {
+    align-self: center;
+    border: none;
+    padding: 16px 23px;
+    border-radius: 3px;
+    font-size: 16px;
+    background-color: rgb(255, 220, 100);
+    transition: .2s ease-in-out background-color;
+}
+
+.modale-container__form-button:hover {
+    background-color: rgb(240, 200, 60)
+}
+
+.modale-container__form-button:active {
+    background-color: rgb(240, 220, 100)
+}
+
+.modale-container__button {
+    position: absolute;
+    top: -40px;
+    right: -80px;
+    padding: 20px 25px;
+    font-size: 18px;
+    border-radius: 50%;
+    border: none;
+    color: #fff;
+    background-color: #666;
+    transition: .2s ease-in-out background-color;
+}
+
+.modale-container__button:hover {
+    background-color: #555;
+}
+
+.modale-container__button:active {
+    background-color: #777;
 }

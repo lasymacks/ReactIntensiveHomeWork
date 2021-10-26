@@ -21,7 +21,7 @@ const Card = (props) => {
               setError(error);
             }
         )
-    }, [items])
+    }, [])
 
     const bascetHandler = (event) => {
         const currentCard = items.reduce((acc, item) => {

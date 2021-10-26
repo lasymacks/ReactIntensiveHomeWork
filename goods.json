@@ -15,7 +15,7 @@
       "image": "https://www.kudaukupovinu.rs/files/images/2016/1/27/banane%281%29.jpg",
       "id": 2,
       "title": "/more",
-      "description": "Незаменим",
+      "description": "Спелый, питательный и самый лучший!",
       "price": "20"
     },
     {
@@ -87,6 +87,6 @@
     "sum": 0
   },
   "role": {
-    "current": ""
+    "current": "visitor"
   }
 }

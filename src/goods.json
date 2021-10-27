@@ -1,0 +1,10 @@
+{
+    "goods": [
+        { "id": 1, "title": "Яблоко", "description": "Не телефон" , "price": "80"},
+        { "id": 2, "title": "Банан", "description": "Незаменим" , "price": "20"},
+        { "id": 3, "title": "Арбуз", "description": "Повезет ли тебе в этот раз?" , "price": "40"},
+        { "id": 4, "title": "Дыня", "description": "Колхозница, или нет?" , "price": "60"},
+        { "id": 5, "title": "Ананас", "description": "А мы её" , "price": "100"},
+        { "id": 6, "title": "Киви", "description": "Сводит скулы" , "price": "120"}
+      ]
+ }

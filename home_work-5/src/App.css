@@ -1,0 +1,284 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* Todo main */
+
+.todo-container {
+  margin: 0 auto;
+  width: 1200px;
+  margin-bottom: 30px;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.todo-container__header {
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.todo-container__header__form {
+  position: relative;
+}
+
+.todo-container__header__form__filters {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  top: 80px;
+  left: 190px;
+  width: 380px;
+}
+
+.todo-container__header__form__count {
+  position: absolute;
+  color: #6E727B;
+  font-size: 14px;
+  top: 43px;
+}
+
+.todo-container__header__form__count--error {
+  color: rgb(212, 40, 40);
+}
+
+.todo-container__section {
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: flex-start;
+}
+
+.input {
+  width: 600px;
+  height: 40px;
+  margin-right: 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  padding: 0 15px;
+  box-shadow: 2px 2px 10px rgb(220, 220, 220);
+  color: #333;
+  transition: .2s ease-in-out background-color;
+}
+
+.input:hover {
+  background-color: rgb(241, 241, 241);
+}
+
+.input:focus {
+  outline: none;
+  background-color: #fff;
+}
+
+.button {
+  border: none;
+  background-color:#6E727B;
+  padding: 0 15px;
+  height: 40px;
+  font-size: 16px;
+  border-radius: 5px;
+  color: #e4e4e4;
+  transition: .2s ease-in-out background-color;
+}
+
+.button:hover {
+  background-color: #909399;
+}
+
+.button:active {
+  background-color: #555a64;
+}
+
+.button--filter {
+  height: 27px;
+  color: #fff;
+  background-color: rgb(187, 187, 187);
+}
+
+.button--filter:hover {
+  background-color: rgb(204, 204, 204);
+}
+
+/* Todo items */
+
+.container {
+  position: relative;
+  background-color: rgb(248, 248, 248);
+}
+
+.container--completed {
+  background-color: rgba(36, 146, 36, 0.479);
+  border-radius: 5px;
+}
+
+.todo-container__list {
+  list-style-type: none;
+}
+
+.todo-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 1000px;
+  margin-bottom: 20px;
+  min-height: 50px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 10px rgb(235, 235, 235), -1px -1px 10px rgb(235, 235, 235);
+  padding: 20px;
+  word-wrap: break-word;
+}
+
+.todo-item__text {
+  width: 90%;
+  line-height: 1.7;
+}
+
+.chosen-button {
+  position: absolute;
+  z-index: 11;
+  top: 25px;
+  left: -40px;
+  border: none;
+  background-color: #fff;
+  padding: 5px;
+}
+
+.chosen {
+  text-align: center;
+  vertical-align: middle;
+  width: 25px;
+  height: 25px;
+}
+
+/* Todo popup */
+
+.popup-backgroung {
+  position: absolute;
+  top: -1930px;
+  right: -100px;
+  z-index: 10;
+  padding-bottom: 800px;
+  padding-top: 2000px;
+  padding-right: 100px;
+  padding-left: 800px;
+  border-color: #999;
+  z-index: 15;
+}
+
+.popup-container {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: center;
+  align-content: space-around;
+  margin: 20px;
+  z-index: 10;
+  width: 300px;
+  padding: 20px;
+  padding-bottom: 10px;
+  min-height: 100px;
+  border-radius: 5px;
+  background-color: rgb(247, 247, 247);
+  background-color: #707070a2;
+  box-shadow: 1px 1px 10px #ececec, -1px -1px 10px #ececec ;
+}
+
+.button--popup {
+  margin-bottom: 10px;
+  background-color: rgb(187, 120, 65);
+}
+
+.button--popup:hover {
+  background-color: rgb(202, 139, 87);
+}
+
+.button--delete {
+  margin-bottom: 10px;
+  background-color: rgb(187, 93, 65);
+}
+
+.button--delete:hover {
+  background-color: rgb(199, 113, 87);
+}
+
+.textarea {
+  width: 880px;
+  height: 20px;
+  padding: 10px;
+  font-size: 16px;
+  vertical-align: middle;
+  border: none;
+}
+
+.textarea:focus {
+  outline: 2px solid rgb(182, 60, 60);
+  border-radius: 5px;
+}
+
+/* Modal delete */
+
+.modal {
+  position: absolute;
+  top: -1930px;
+  right: -80px;
+  z-index: 10;
+  padding-bottom: 800px;
+  padding-top: 2000px;
+  padding-right: 400px;
+  padding-left: 400px;
+}
+
+.modal-delete {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  word-wrap: break-word;
+  width: 400px;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: rgb(238, 238, 238);
+  box-shadow: 2px 2px 10px rgb(207, 207, 207), -2px -2px 10px rgb(207, 207, 207);
+}
+
+.modal-delete__header {
+  margin-bottom: 40px;
+  font-weight: 400;
+  font-size: 20px;
+  color: rgb(163, 76, 50);
+}
+
+.modal-delete__task {
+  position: relative;
+  margin-bottom: 40px;
+  text-align: center;
+  width: 100%;
+}
+
+.modal-delete__time {
+  position: relative;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+.modal-delete__description {
+  align-self: flex-start;
+  position: absolute;
+  top: -30px;
+  left: 128px;
+  font-size: 17px;
+  color: #724d43;
+}
+
+.button--modale {
+  margin-right: 25px;
+}

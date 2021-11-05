@@ -156,13 +156,14 @@ const TodoItem = (props: ITodoItemProps) => {
         <div 
             className={filteredTask.completed ? 'container container--completed' : 'container'} 
         >
-            {filteredTask.chosen && <button 
-                                        className='chosen-button' 
-                                        onBlur={(e) => textareaBlur(e)} 
-                                        onClick={chosenHandler}
-                                    >
-                <img className='chosen' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR64TnOs1Zy6f5bB7yli2qnBtgNKwXb_k878DYdVVEgjjPGwV_B43IHhREiABFmyZPRF94&usqp=CAU'></img>
-            </button>}
+            {filteredTask.chosen &&
+                <button
+                    className='chosen-button'
+                    onBlur={(e) => textareaBlur(e)}
+                    onClick={chosenHandler}
+                    >
+                        <img className='chosen' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR64TnOs1Zy6f5bB7yli2qnBtgNKwXb_k878DYdVVEgjjPGwV_B43IHhREiABFmyZPRF94&usqp=CAU'></img>
+                </button>}
             
             <li className='todo-item' id={String(filteredTask.id)} key={filteredTask.key}>
                 {edit ? 

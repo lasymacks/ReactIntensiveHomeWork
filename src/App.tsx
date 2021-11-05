@@ -139,26 +139,43 @@ const App: React.FC = () => {
 
   if (error) {
     return <div>Ошибка: {error}</div>;
-  } else if (!isLoaded) {
-    return <div>Загрузка...</div>;
+    // else if (!isLoaded) {
+    //     return <div>Загрузка...</div>;
+    //   }
   } else {
     return (
       <body className="todo">
         <div className='todo-container'>
           <header className='todo-container__header'>
             <form className='todo-container__header__form'>
-              <input className='input' placeholder='Описание дела' onBlur={(e) => inputBlur(e)} onChange={(e) => inputHandler(e)} value={input}></input>
-              <button className='button' onClick={(e) => buttonHandler(e)}>Добавить дело</button>
+              <input
+                  data-test-id='input'
+                  className='input'
+                  placeholder='Описание дела'
+                  onBlur={(e) => inputBlur(e)}
+                  onChange={(e) => inputHandler(e)}
+                  value={input}>
+              </input>
+              <button
+                  data-test-id='submit-button'
+                  className='button'
+                  onClick={(e) => buttonHandler(e)}
+                  >
+                    Добавить дело
+                  </button>
               <div className='todo-container__header__form__filters'>
-                <button 
+                <button
+                  data-test-id='chosen-button'
                   className={chosen ? 'button button--filter button--delete' : 'button button--filter'}
                   onClick={(e) => chosenHandler(e)}
                   >Избранные</button>
-                <button 
+                <button
+                  data-test-id='completed-button'
                   className={completed ? 'button button--filter button--delete' : 'button button--filter'}
                   onClick={(e) => completedHandler(e)}
                   >Выполненные</button>
-                <button 
+                <button
+                  data-test-id='inWork-button'
                   className={inWork ? 'button button--filter button--delete' : 'button button--filter'}
                   onClick={(e) => inWorkHandler(e)}
                   >В работе</button>

@@ -43,7 +43,7 @@ const PopupItem = (props: IPropsPopup) => {
 	if (isOpen) {
         // ReactDOM.createPortal
 		return (
-            <div className='popup-backgroung' onClick={closeHandler}>
+            <div data-test-id='popup' className='popup-backgroung' onClick={closeHandler}>
                     {props.children}
             </div>
 			// ,
